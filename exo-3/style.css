@@ -1,0 +1,64 @@
+*{
+    margin: 0px;
+    padding:0px;
+    font-family: Avenir;
+}
+h1{
+    text-align: center;
+    margin: 50px;
+}
+.batton{
+    height: 300px;
+    background-color: black;
+    width: 10px;
+    position: static;
+}
+
+.board{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    gap: 20px;
+   
+ 
+}
+.inputJoueur{
+height: 40px;
+width: 400px;
+}
+.input-container{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+   
+}
+.pass{
+    display: none;
+    font-size: 40px;
+    padding: 10px;
+    margin: 0 auto;
+    margin-top: 50px;
+    background-color: aliceblue;
+    border: solid 1px ;
+    padding: 10px 20px 10px;
+}
+.message{
+text-align: center;
+margin: 20px;
+font-size: 26px;
+}
+.nombre-batons{
+    text-align: center;
+    margin: 20px;
+    font-size: 25px;
+}
+.nombre-batons::before{
+    content: "Nombre de batons restants : ";
+}
