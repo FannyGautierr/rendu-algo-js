@@ -10,16 +10,14 @@ let Joueur1Turn=true
 
 let Players=[]
 
-    startButton.addEventListener("click",()=>{
-        if(document.querySelector(".inputJoueur1").value!=""&& document.querySelector(".inputJoueur2").value!=""){
-            createBoard();
-            
-        }else{
-            console.log(document.querySelector(".inputJoueur2").value)
-        }
-    });
-
-
+startButton.addEventListener("click",()=>{
+    if(document.querySelector(".inputJoueur1").value!=""&& document.querySelector(".inputJoueur2").value!=""){
+        createBoard();
+        
+    }else{
+        console.log(document.querySelector(".inputJoueur2").value)
+    }
+});
 
 class Player
 {
@@ -29,63 +27,65 @@ class Player
         this.batons=batons
         this.canPlay=canPlay
     }   
-        countBaton(adversaire){
-            console.log(this.batons,adversaire.batons)
-            if(this.batons>=2){
-                
-                this.batons--
-                nombrebatons.innerHTML=this.batons
-                message.innerHTML="c'est au tour de " + this.name
 
-            }
-            else{
-               
-                this.batons--
-                this.canPlay=false
-                this.batons=3
-                adversaire.batons=3
-                message.innerHTML="c'est au tour de " + adversaire.name
-                nombrebatons.innerHTML=adversaire.batons
-            }
-        }
+    countBaton(adversaire){
+        if(this.batons>=2){
+            
+            this.batons--
+            nombrebatons.innerHTML=this.batons
+            message.innerHTML="c'est au tour de " + this.name
 
-        pass(adversaire){
-            console.log(this.batons)
-            if(this.batons<3){
-               
-                this.canPlay=false
-                this.batons=3
-                adversaire.batons=3
-                message.innerHTML="c'est au tour de " + adversaire.name
-                nombrebatons.innerHTML=adversaire.batons
-            }
-           
         }
+        else{
+            
+            this.batons--
+            this.canPlay=false
+            this.batons=3
+            adversaire.batons=3
+            message.innerHTML="c'est au tour de " + adversaire.name
+            nombrebatons.innerHTML=adversaire.batons
+        }
+    }
 
-        whosTurn(other){
-            if(other===false){
-                this.canPlay=true
-            }
+    pass(adversaire){
+        if(this.batons<3){
+
+            this.canPlay=false
+            this.batons=3
+            adversaire.batons=3
+            message.innerHTML="c'est au tour de " + adversaire.name
+            nombrebatons.innerHTML=adversaire.batons
         }
+        
+    }
+
+    whosTurn(other){
+        if(other===false){
+            this.canPlay=true
+        }
+    }
     
-
 }
 
 function createBoard(){
     Joueur1Turn=true
-/*Create the player*/
+    // CREATE PLAYER
     let Joueur1= new Player(document.querySelector(".inputJoueur1").value,3,true)
     let Joueur2= new Player(document.querySelector(".inputJoueur2").value,4,false)
+
     Players.push(Joueur1,Joueur2)
+    //DOM 
     inputContainer.style.display="none"
     pass.style.display="block"
-    console.log(Joueur1,Joueur2)
     startButton.style.display="none";
+    // GENERE BATONS
     let numberBatons= Math.floor(Math.random() * (25 - 5 + 1) + 5)
 
     for(let i = numberBatons; i>0;i--){
         board.innerHTML+='<div class="batton batton-'+i+'"></div>'
     }
+
+// GAMEPLAY
     let batons=document.querySelectorAll(".batton")
    
     batons.forEach(e=>{
@@ -113,13 +113,10 @@ function createBoard(){
                         
                           
                     })
-                    
-               
                 }
-               
-             
+
                 else if(Joueur2.canPlay){
-                    /*nombrebatons.innerHTML=Joueur2.batons*/
+                 
                     Joueur2.countBaton(Joueur1);
                    
                     Joueur1.whosTurn(Joueur2.canPlay)
@@ -150,12 +147,7 @@ function createBoard(){
         })
         }
    
-    })
-  
-
-  console.log(batons.length)
-  
-  
+    })  
 }
 
 
